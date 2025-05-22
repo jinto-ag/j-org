@@ -38,9 +38,7 @@
     {
       "plugin": "@nx/js/typescript",
       "options": {
-        "typecheck": {
-          "targetName": "typecheck"
-        },
+        "typecheck": { "targetName": "typecheck" },
         "build": {
           "targetName": "build",
           "configName": "tsconfig.lib.json",
@@ -49,12 +47,7 @@
         }
       }
     },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
     {
       "plugin": "@nx/react/router-plugin",
       "options": {
@@ -106,10 +99,7 @@
         "{workspaceRoot}/dist/test-results/{projectRoot}"
       ]
     },
-    "lint": {
-      "inputs": ["lint"],
-      "cache": true
-    },
+    "lint": { "inputs": ["lint"], "cache": true },
     "typecheck": {
       "inputs": ["default", "^production"],
       "outputs": ["{workspaceRoot}/dist/out-tsc/{projectRoot}"]
@@ -165,7 +155,7 @@
     "projects": ["*"],
     "releaseTagPattern": "v{version}"
   },
-  "nxCloudId": "6808cc4e5912c1602365e94b",
+  "nxCloudId": "682f297278a4f5a3b43ab949",
   "packageManager": "pnpm",
   "defaultBase": "main"
 }
