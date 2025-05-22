@@ -72,7 +72,7 @@ This helps understand the impact of changes across the project ecosystem.
 The TS-NX-Preset workspace is organized according to Nx best practices:
 
 ```txt
-ts-nx-preset/
+j-org/
 ├── apps/           # Application projects
 ├── libs/           # Shared libraries
 │   └── logging/    # Logging library

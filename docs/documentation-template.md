@@ -1,7 +1,7 @@
 # [Feature/Component Name]
 
 <!--
-This is a template for creating documentation for features and components in the ts-nx-preset project.
+This is a template for creating documentation for features and components in the j-org project.
 Delete this comment section when using this template.
 -->
 
@@ -30,7 +30,7 @@ Brief description of the feature/component, its purpose, and why it exists.
 
 ```bash
 # Include installation instructions if applicable
-npm install @ts-nx-preset/[package-name]
+npm install @j-org/[package-name]
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ npm install @ts-nx-preset/[package-name]
 
 ```typescript
 // Include a basic usage example
-import { Something } from '@ts-nx-preset/[package-name]';
+import { Something } from '@j-org/[package-name]';
 
 // Example usage code
 const instance = new Something();
@@ -52,7 +52,7 @@ instance.doSomething();
 
 ```typescript
 // More complex usage example
-import { Something } from '@ts-nx-preset/[package-name]';
+import { Something } from '@j-org/[package-name]';
 
 // Advanced usage code
 ```

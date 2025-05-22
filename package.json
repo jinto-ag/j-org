@@ -1,5 +1,5 @@
 {
-  "name": "@ts-nx-preset/source",
+  "name": "@j-org/source",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -29,11 +29,6 @@
     "reset-cache": "nx reset",
     "affected:graph": "nx affected:dep-graph",
     "update:nx": "./tools/nx-update.sh",
-    "rename": "tsx tools/initialize.ts rename",
-    "rename:dry-run": "tsx tools/initialize.ts rename --dry-run",
-    "rename:force": "tsx tools/initialize.ts rename --force",
-    "initialize": "tsx tools/initialize.ts initialize",
-    "initialize:dry-run": "tsx tools/initialize.ts initialize --dry-run",
     "initialize:force": "tsx tools/initialize.ts initialize --force"
   },
   "private": true,

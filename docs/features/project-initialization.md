@@ -13,7 +13,7 @@
 
 ## Overview
 
-Project Initialization provides a streamlined way to transform the ts-nx-preset template into your own project. This tool allows you to rename the workspace while preserving various casing formats, update version numbers, and clean up template-specific files. It's designed to accelerate the setup process for new projects based on the ts-nx-preset template.
+Project Initialization provides a streamlined way to transform the j-org template into your own project. This tool allows you to rename the workspace while preserving various casing formats, update version numbers, and clean up template-specific files. It's designed to accelerate the setup process for new projects based on the j-org template.
 
 ## Features
 
@@ -28,7 +28,7 @@ Project Initialization provides a streamlined way to transform the ts-nx-preset 
 
 ### Creating a New Project from Template
 
-1. Go to the [ts-nx-preset GitHub repository](https://github.com/jinto-ag/ts-nx-preset)
+1. Go to the [j-org GitHub repository](https://github.com/jinto-ag/j-org)
 2. Click the "Use this template" button near the top of the page
 3. Fill in your new repository details and create it
 4. Clone your new repository locally:
@@ -124,7 +124,7 @@ yarn initialize:dry-run my-new-project
 
 The initialization tool performs the following operations:
 
-1. **Workspace Verification**: Ensures you're working with a ts-nx-preset template
+1. **Workspace Verification**: Ensures you're working with a j-org template
 2. **Case Variant Generation**: Creates variations of the workspace name in different case formats
 3. **File Processing**: Scans for files that need to be updated
 4. **Content Updates**: Updates references to the old name with the new name
@@ -185,7 +185,7 @@ The following npm scripts are removed from package.json during initialization:
 
 ## Integration with Other Features
 
-The initialization tool works seamlessly with other features of the ts-nx-preset:
+The initialization tool works seamlessly with other features of the j-org:
 
 - **Nx Configuration**: Updates the npmScope in nx.json to match the new project name
 - **ESLint Configuration**: Updates ESLint configurations with the new project name

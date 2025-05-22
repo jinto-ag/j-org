@@ -24,7 +24,7 @@ TS-NX-Preset is a template repository for TypeScript monorepo projects powered b
 
 ### Create a New Project from Template
 
-1. Click the "Use this template" button on the [ts-nx-preset GitHub repository](https://github.com/jinto-ag/ts-nx-preset) to create a new repository
+1. Click the "Use this template" button on the [j-org GitHub repository](https://github.com/jinto-ag/j-org) to create a new repository
 2. Clone your new repository locally:
    ```sh
    git clone https://github.com/yourusername/your-repo-name.git
@@ -67,7 +67,7 @@ pnpx tsx tools/initialize.ts initialize my-project-name --dry-run
 
 This will:
 
-- Rename the workspace from `ts-nx-preset` to your project name
+- Rename the workspace from `j-org` to your project name
 - Update all references to the workspace name throughout the codebase
 - Clean up template-specific files and scripts
 - Stage and commit the changes to Git
@@ -80,7 +80,7 @@ This workspace is designed to be used as a template for creating new projects. F
 
 1. **Create a New Repository from Template**:
 
-   - Go to the [ts-nx-preset GitHub repository](https://github.com/jinto-ag/ts-nx-preset)
+   - Go to the [j-org GitHub repository](https://github.com/jinto-ag/j-org)
    - Click the "Use this template" button near the top of the page
    - Fill in your new repository details and create it
    - Clone your new repository locally
@@ -136,7 +136,7 @@ npm run rename:force your-project-name
 yarn rename:force your-project-name
 ```
 
-Both options will update all references to `ts-nx-preset` in the codebase to your project name, including package names, import statements, and configuration files.
+Both options will update all references to `j-org` in the codebase to your project name, including package names, import statements, and configuration files.
 
 ## Generate a library
 
