@@ -8,7 +8,9 @@
       "!{projectRoot}/eslint.config.mjs",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/src/test-setup.[jt]s"
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/test-setup.[jt]s"
     ],
     "sharedGlobals": [
       "{workspaceRoot}/.github/workflows/ci.yml",
@@ -38,7 +40,9 @@
     {
       "plugin": "@nx/js/typescript",
       "options": {
-        "typecheck": { "targetName": "typecheck" },
+        "typecheck": {
+          "targetName": "typecheck"
+        },
         "build": {
           "targetName": "build",
           "configName": "tsconfig.lib.json",
@@ -47,7 +51,12 @@
         }
       }
     },
-    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
     {
       "plugin": "@nx/react/router-plugin",
       "options": {
@@ -80,6 +89,13 @@
         "buildDepsTargetName": "build-deps",
         "watchDepsTargetName": "watch-deps"
       }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      },
+      "exclude": ["apps/json-server-e2e/**/*"]
     }
   ],
   "targetDefaults": {
@@ -99,7 +115,10 @@
         "{workspaceRoot}/dist/test-results/{projectRoot}"
       ]
     },
-    "lint": { "inputs": ["lint"], "cache": true },
+    "lint": {
+      "inputs": ["lint"],
+      "cache": true
+    },
     "typecheck": {
       "inputs": ["default", "^production"],
       "outputs": ["{workspaceRoot}/dist/out-tsc/{projectRoot}"]
@@ -117,6 +136,11 @@
       "inputs": ["production", "^production"]
     },
     "@nx/js:swc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "@nx/esbuild:esbuild": {
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
