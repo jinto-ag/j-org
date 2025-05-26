@@ -12,8 +12,10 @@ import {
 import type { JsonDataManager } from './json-data-manager.js';
 import { EntityNotFound } from './model-errors.js';
 import type {
+  LogicalFilter,
   AuthenticatedRequest as Request,
   SingleFilter,
+  SortCondition,
   User,
 } from './types.js';
 import {
@@ -29,9 +31,26 @@ import {
 const resendInstance = new Resend(process.env.RESEND_TOKEN);
 const env = Env.getInstance();
 
-// In handlers.ts
+type RequestWithQueryOptions = Request & {
+  queryOptions: {
+    pagination: {
+      current: number;
+      pageSize: number;
+      start?: number;
+      end?: number;
+    };
+    sorters: SortCondition[];
+    filters: (SingleFilter | LogicalFilter)[] | undefined;
+    embed?: string[];
+    expand?: string[];
+    includeDeleted?: boolean;
+    entity?: string;
+  };
+};
+
 export const listEntities =
-  (dataManager: JsonDataManager) => async (req: Request, res: Response) => {
+  (dataManager: JsonDataManager) =>
+  async (req: RequestWithQueryOptions, res: Response) => {
     const { entity } = req.params;
     const {
       pagination,
@@ -148,7 +167,8 @@ export const deleteEntity =
 
 // Count of entity
 export const countOfEntity =
-  (dataManager: JsonDataManager) => async (req: Request, res: Response) => {
+  (dataManager: JsonDataManager) =>
+  async (req: RequestWithQueryOptions, res: Response) => {
     const { entity } = req.params;
     const { pagination, sort, filter, embed, expand } = req['queryOptions'];
 
@@ -174,7 +194,7 @@ export const countOfEntity =
           expand,
         });
       }
-      const count = (q ? result.data[entity] || [] : result.data).length;
+      const count = (q ? (result.data[entity] ?? []) : result.data).length;
       res.status(HTTP_STATUS.OK).json(
         generateResponse(req, {
           data: { count },
@@ -190,9 +210,15 @@ export const countOfEntity =
 
 // Global Search
 export const globalSearch =
-  (dataManager: JsonDataManager) => async (req: Request, res: Response) => {
+  (dataManager: JsonDataManager) =>
+  async (req: RequestWithQueryOptions, res: Response) => {
     const { q } = req.query;
-    const { pagination, sort, filter, entity } = req['queryOptions'];
+    const {
+      pagination,
+      sorters: sort,
+      filters: filter,
+      entity,
+    } = req['queryOptions'];
 
     if (!q || typeof q !== 'string') {
       return res.status(HTTP_STATUS.OK).json(

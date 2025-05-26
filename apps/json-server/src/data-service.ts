@@ -24,14 +24,14 @@ import type {
 import { hashPassword, pluralize } from './utils.js';
 
 export class DataService {
-  private crudManager: JsonCrudManager;
+  private crudManager!: JsonCrudManager;
   private multitenancy: MultitenancyManager;
   private persistenceManager: DataPersistenceManager;
-  private operationsManager: DataOperationsManager;
-  private relationsManager: ModelRelationsManager;
+  private operationsManager!: DataOperationsManager;
+  private relationsManager!: ModelRelationsManager;
   private cache: ReturnType<typeof createCache>;
-  private systemUser: User;
-  private defaultTenant: Tenant;
+  private systemUser!: User;
+  private defaultTenant!: Tenant;
   private defaultSystemUser = {
     id: 'system',
     username: 'system',
@@ -81,7 +81,7 @@ export class DataService {
 
     let defaultTenant = data.tenants.find(
       tenant => tenant.name === 'Default'
-    ) as unknown as Tenant;
+    ) as unknown as Tenant | undefined;
 
     if (!defaultTenant) {
       const now = new Date().toISOString();
@@ -234,7 +234,7 @@ export class DataService {
     } = {}
   ): Promise<{ data: Item[]; pagination: Pagination }> {
     await this.initialized;
-    const user = options.user || this.systemUser;
+    const user = options.user ?? this.systemUser;
     let data = this.crudManager.getData()[pluralize(entityName)] || [];
     data = this.multitenancy.scopeItems(data, user, options.includeDeleted);
 
@@ -249,7 +249,7 @@ export class DataService {
     const { data: paginatedData, pagination } =
       this.operationsManager.applyPagination(
         data,
-        options.pagination || { current: 1, pageSize: 10 }
+        options.pagination ?? { current: 1, pageSize: 10 }
       );
 
     return {
@@ -269,7 +269,7 @@ export class DataService {
     } = {}
   ): Promise<{ data: Record<string, Item[]>; pagination: Pagination }> {
     await this.initialized;
-    const user = options.user || this.systemUser;
+    const user = options.user ?? this.systemUser;
     const results: Record<string, Item[]> = {};
     const data = this.crudManager.getData();
 
@@ -314,14 +314,14 @@ export class DataService {
     const { data: paginatedFlatData, pagination } =
       this.operationsManager.applyPagination(
         flatResults,
-        options.pagination || { current: 1, pageSize: 10 }
+        options.pagination ?? { current: 1, pageSize: 10 }
       );
 
     const paginatedResults: Record<string, Item[]> = {};
     for (const key in results) {
       const entityPaginated = this.operationsManager.applyPagination(
         results[key],
-        options.pagination || { current: 1, pageSize: 10 }
+        options.pagination ?? { current: 1, pageSize: 10 }
       ).data;
       paginatedResults[key] = entityPaginated.map(item =>
         this.sanitizeResult(key, item)
@@ -348,12 +348,12 @@ export class DataService {
     user: User
   ): Promise<void> {
     this.crudManager.createActivity(
-      activity.type,
-      activity.title,
-      activity.description,
+      activity.type!,
+      activity.title!,
+      activity.description!,
       user,
-      activity.related_entity_type,
-      activity.related_entity_id
+      activity.related_entity_type!,
+      activity.related_entity_id!
     );
     await this.persistData();
   }

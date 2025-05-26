@@ -13,7 +13,7 @@ export class HttpError extends Error {
   }
 
   getStackTrace(): string {
-    return this.stack || '';
+    return this.stack ?? '';
   }
 }
 

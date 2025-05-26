@@ -44,12 +44,12 @@ export type AuditInfo = {
   tenant_id: UUID;
   created_at: ISODateTime;
   updated_at: ISODateTime;
-  deleted_at?: ISODateTime;
+  deleted_at?: ISODateTime | null;
 
   // User IDs
   created_by_id: UUID;
   updated_by_id: UUID;
-  deleted_by_id?: UUID;
+  deleted_by_id?: UUID | null;
 };
 
 export type Tenant = {
