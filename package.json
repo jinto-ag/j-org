@@ -72,7 +72,7 @@
     "jiti": "2.4.2",
     "jsdom": "^26.1.0",
     "jsonc-eslint-parser": "^2.4.0",
-    "lint-staged": "^15.5.1",
+    "lint-staged": "^16.1.4",
     "nx": "21.1.0",
     "prettier": "^3.5.3",
     "rollup": "^4.41.0",
